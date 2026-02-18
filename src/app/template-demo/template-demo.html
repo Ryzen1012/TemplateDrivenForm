@@ -1,39 +1,56 @@
 <form #myForm="ngForm" (ngSubmit)="onSubmit()">
 
+  <!-- Username -->
   <input class="input-box"
     type="text"
     name="username"
     [(ngModel)]="username"
     placeholder="Enter username"
-    required />
+    required
+    minlength="4"
+    maxlength="12"
+    pattern="[a-zA-Z0-9_]+"
+    #usernameField="ngModel" />
+  <span class="error" *ngIf="usernameField.invalid && usernameField.touched">
+    Username: 4-12 chars (letters/numbers/_)
+  </span>
 
+  <!-- Email -->
   <input class="input-box"
     type="email"
     name="email"
     [(ngModel)]="email"
     placeholder="Enter email"
     required
-    email />
+    email
+    #emailField="ngModel" />
+  <span class="error" *ngIf="emailField.invalid && emailField.touched">
+    Enter a valid email
+  </span>
 
+  <!-- Password -->
   <input class="input-box"
     type="password"
     name="password"
     [(ngModel)]="password"
     placeholder="Enter password"
     required
-    minlength="6" />
+    minlength="8"
+    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}"
+    #passwordField="ngModel" />
+  <span class="error" *ngIf="passwordField.invalid && passwordField.touched">
+    Password: 8+ with upper, lower, number
+  </span>
 
-  <select class="input-box"
-    name="role"
-    [(ngModel)]="role"
-    required>
+  <!-- Role -->
+  <select class="input-box" name="role" [(ngModel)]="role" required>
     <option value="" disabled selected>Select role</option>
-    <option value="admin">Admin</option>
-    <option value="user">User</option>
-    <option value="guest">Guest</option>
+    <option value="Admin">Admin</option>
+    <option value="User">User</option>
+    <option value="Guest">Guest</option>
   </select>
 
-  <!-- Gender Radio Buttons -->
+  <!-- Gender -->
   <div class="radio-group">
     <label>Gender:</label><br>
     <input type="radio" name="gender" [(ngModel)]="gender" value="Male" required /> Male
@@ -41,10 +58,7 @@
   </div>
 
   <!-- Status -->
-  <select class="input-box"
-    name="status"
-    [(ngModel)]="status"
-    required>
+  <select class="input-box" name="status" [(ngModel)]="status" required>
     <option value="" disabled selected>Select status</option>
     <option value="Permanent">Permanent</option>
     <option value="Probationary">Probationary</option>
@@ -58,10 +72,6 @@
     rows="4">
   </textarea>
 
-  <input
-    class="btn"
-    type="submit"
-    value="Submit"
-    [disabled]="!myForm.valid" />
+  <input class="btn" type="submit" value="Submit" [disabled]="!myForm.valid" />
 
 </form>

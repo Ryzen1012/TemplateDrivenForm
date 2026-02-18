@@ -1,23 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
-import { TemplateDemo } from './template-demo';
+@Component({
+  selector: 'app-template-demo',
+  imports: [FormsModule, NgIf],
+  templateUrl: './template-demo.html',
+  styleUrl: './template-demo.css'
+})
+export class TemplateDemoComponent {
+  title = 'Template Driven Demo';
+  username = '';
+  email = '';
+  password = '';
+  role = '';
+  gender = '';
+  status = '';
+  comments = '';
+  submitted = false;
 
-describe('TemplateDemo', () => {
-  let component: TemplateDemo;
-  let fixture: ComponentFixture<TemplateDemo>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TemplateDemo]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(TemplateDemo);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  onSubmit() {
+    this.submitted = true;
+  }
+}

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { TemplateDemoComponent } from './template-demo/template-demo';
+import { ReactiveDemoComponent } from './reactive-demo/reactive-demo';
 
 @Component({
   selector: 'app-root',
-  imports: [TemplateDemoComponent],
+  imports: [TemplateDemoComponent, ReactiveDemoComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
